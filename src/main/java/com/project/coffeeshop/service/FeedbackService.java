@@ -46,6 +46,7 @@ public class FeedbackService {
             feedback.setTitle(feedbackDto.getTitle());
             feedback.setContent(feedbackDto.getContent());
             feedback.setOrder(order);
+            feedback.setUser(user);
 
             feedbackRepository.save(feedback);
             return true;

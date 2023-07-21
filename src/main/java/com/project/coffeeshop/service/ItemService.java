@@ -33,4 +33,8 @@ public class ItemService {
         }
         return new ArrayList<>();
     }
+
+    public void deleteItemById(Long id){
+
+    }
 }

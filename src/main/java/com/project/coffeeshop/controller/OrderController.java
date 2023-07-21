@@ -2,6 +2,7 @@ package com.project.coffeeshop.controller;
 
 import com.project.coffeeshop.dto.OrderDto;
 import com.project.coffeeshop.dto.ResponseDto;
+import com.project.coffeeshop.exception.CatchException;
 import com.project.coffeeshop.exception.DeleteResponse;
 import com.project.coffeeshop.model.OrderModel;
 import com.project.coffeeshop.service.OrderService;
@@ -38,6 +39,19 @@ public class OrderController {
             boolean result = orderService.createOrder(orderDto);
             return new ResponseEntity<>(result, HttpStatus.OK);
         }catch (CacheException e){
+            String message = e.getMessage();
+            DeleteResponse deleteResponse = new DeleteResponse(message);
+            return new ResponseEntity<>(deleteResponse,HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @DeleteMapping("/delete/order/{id}")
+    public ResponseEntity<?> deleteProduct(@PathVariable("id") Long id){
+        try {
+            orderService.deleteOrderById(id);
+            return new ResponseEntity<>(HttpStatus.OK);
+        } catch (CatchException e){
             String message = e.getMessage();
             DeleteResponse deleteResponse = new DeleteResponse(message);
             return new ResponseEntity<>(deleteResponse,HttpStatus.INTERNAL_SERVER_ERROR);

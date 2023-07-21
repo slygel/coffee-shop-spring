@@ -217,4 +217,13 @@ public class OrderService {
         }
         return 0;
     }
+
+    public void deleteOrderById(Long id){
+        try {
+            orderRepository.deleteById(id);
+        }catch (Exception e){
+            String message = "Can not delete product with id "+ id;
+            throw new CatchException(message);
+        }
+    }
 }

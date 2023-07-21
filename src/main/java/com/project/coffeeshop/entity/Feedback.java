@@ -20,6 +20,10 @@ public class Feedback implements Serializable{
 	@JoinColumn(name = "order_id")
 	private Order order;
 
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "user_id")
+	private User user;
+
 	public Feedback() {
 		// TODO Auto-generated constructor stub
 	}
@@ -29,6 +33,7 @@ public class Feedback implements Serializable{
 		this.title = feedback.getTitle();
 		this.content = feedback.getContent();
 		this.order = new Order();
+		this.user = new User();
 	}
 
 	public Long getId() {
@@ -62,6 +67,12 @@ public class Feedback implements Serializable{
 	public void setOrder(Order order) {
 		this.order = order;
 	}
-	
 
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
 }

@@ -117,8 +117,10 @@ public class BillService {
 
         Paragraph userInfo = new Paragraph();
         userInfo.setFont(info);
+        userInfo.add("Bill ID: " + billModel.getId() + "\n");
         userInfo.add("Name: " + billModel.getOrder().getUser().getFullName() + "\n");
         userInfo.add("Email: " + billModel.getOrder().getUser().getEmail() + "\n");
+        userInfo.add("Phone: " + billModel.getOrder().getUser().getDeliveryInfos().get(0).getPhoneNumber() + "\n");
         userInfo.add("Payment Method: " + billModel.getOrder().getPaymentModel().getName() + "\n");
         userInfo.setAlignment(Element.ALIGN_LEFT);
         document.add(userInfo);
