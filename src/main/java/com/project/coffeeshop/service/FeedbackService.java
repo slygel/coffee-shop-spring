@@ -1,6 +1,7 @@
 package com.project.coffeeshop.service;
 
 import com.project.coffeeshop.dto.FeedbackDto;
+import com.project.coffeeshop.dto.FeedbackUser;
 import com.project.coffeeshop.entity.Feedback;
 import com.project.coffeeshop.entity.Order;
 import com.project.coffeeshop.entity.User;
@@ -55,19 +56,13 @@ public class FeedbackService {
     }
 
     @Transactional
-    public List<FeedbackDto> getAllFeedbacks() {
+    public List<FeedbackUser> getAllFeedbacks() {
         List<Feedback> feedbacks = feedbackRepository.findAll();
-        List<FeedbackDto> feedbackDtos = new ArrayList<>();
-
-        for (Feedback feedback : feedbacks) {
-            FeedbackDto feedbackDto = new FeedbackDto();
-            feedbackDto.setTitle(feedback.getTitle());
-            feedbackDto.setContent(feedback.getContent());
-            feedbackDto.setOrderId(feedback.getOrder().getId());
-            feedbackDtos.add(feedbackDto);
+        List<FeedbackUser> feedbackUsers = new ArrayList<>();
+        for (Feedback feedback : feedbacks){
+            feedbackUsers.add(new FeedbackUser(feedback));
         }
-
-        return feedbackDtos;
+        return feedbackUsers;
     }
 
 }

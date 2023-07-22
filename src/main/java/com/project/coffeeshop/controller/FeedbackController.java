@@ -1,7 +1,7 @@
 package com.project.coffeeshop.controller;
 
 import com.project.coffeeshop.dto.FeedbackDto;
-import com.project.coffeeshop.model.FeedbackModel;
+import com.project.coffeeshop.dto.FeedbackUser;
 import com.project.coffeeshop.service.FeedbackService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -28,8 +28,8 @@ public class FeedbackController {
     }
 
     @GetMapping("/feedbacks")
-    public ResponseEntity<List<FeedbackDto>> getFeedbackOrder(){
-        ArrayList<FeedbackDto> feedbackDtos = new ArrayList<>(feedbackService.getAllFeedbacks());
+    public ResponseEntity<List<FeedbackUser>> getFeedbackOrder(){
+        ArrayList<FeedbackUser> feedbackDtos = new ArrayList<>(feedbackService.getAllFeedbacks());
         return new ResponseEntity<>(feedbackDtos,HttpStatus.OK);
     }
 }

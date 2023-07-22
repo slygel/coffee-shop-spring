@@ -2,11 +2,7 @@ package com.project.coffeeshop.controller;
 
 import com.project.coffeeshop.constant.Constant;
 import com.project.coffeeshop.dto.*;
-import com.project.coffeeshop.entity.RefreshToken;
-import com.project.coffeeshop.entity.User;
-import com.project.coffeeshop.security.JwtTokenProvider;
 import com.project.coffeeshop.service.AuthService;
-import com.project.coffeeshop.service.RefreshTokenService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

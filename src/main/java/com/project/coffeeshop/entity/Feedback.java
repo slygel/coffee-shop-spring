@@ -16,7 +16,7 @@ public class Feedback implements Serializable{
 	private String title;
 	private String content;
 	
-	@OneToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "order_id")
 	private Order order;
 

@@ -43,10 +43,10 @@ public class Order implements Serializable{
 	
 	@OneToOne(mappedBy = "order")
 	private Bill bill;
-	
-	@OneToOne(mappedBy = "order")
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "order")
 	@OnDelete(action = OnDeleteAction.CASCADE)
-	private Feedback feedback;
+	private List<Feedback> feedback;
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "payment_id")
@@ -97,19 +97,19 @@ public class Order implements Serializable{
 		this.orderDate = orderDate;
 	}
 
-	public Feedback getFeedback() {
-		return feedback;
-	}
-
-	public void setFeedback(Feedback feedback) {
-		this.feedback = feedback;
-	}
-
 	public Payment getPayment() {
 		return payment;
 	}
 
 	public void setPayment(Payment payment) {
 		this.payment = payment;
+	}
+
+	public List<Feedback> getFeedback() {
+		return feedback;
+	}
+
+	public void setFeedback(List<Feedback> feedback) {
+		this.feedback = feedback;
 	}
 }

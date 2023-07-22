@@ -1,6 +1,5 @@
 package com.project.coffeeshop.controller;
 
-import com.project.coffeeshop.dto.ShipmentDto;
 import com.project.coffeeshop.dto.OrderShipmentResponse;
 import com.project.coffeeshop.service.ShipmentService;
 import org.springframework.beans.factory.annotation.Autowired;

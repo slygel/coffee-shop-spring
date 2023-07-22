@@ -33,6 +33,14 @@ public class OrderController {
         return new ResponseEntity<>(orderModels, HttpStatus.OK);
     }
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @GetMapping("/admin/orders")
+    public ResponseEntity<List<OrderModel>> getOrdersByAdmin(){
+        List<OrderModel> orderModels = orderService.getOrdersByAdmin();
+
+        return new ResponseEntity<>(orderModels, HttpStatus.OK);
+    }
+
     @PostMapping("/post/order")
     public ResponseEntity<Object> createOrder(@RequestBody OrderDto orderDto){
         try{

@@ -32,7 +32,7 @@ public class VoucherService {
         if(!(authentication instanceof AnonymousAuthenticationToken)){
             String username = authentication.getName();
             User user = userRepository.getUserByUsername(username).get(0);
-            if(user.getPoint() >= 8 || user.getEmail().equals("nttue03@gmail.com")){
+            if(user.getPoint() >= 8 || user.getUsername().equals("admin")){
                 List<Voucher> vouchers = voucherRepository.findAll();
                 List<VoucherModel> voucherModels = new ArrayList<>();
                 for(Voucher voucher : vouchers){

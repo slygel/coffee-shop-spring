@@ -126,7 +126,6 @@ public class OrderService {
         return false;
     }
 
-    // Lấy ra tất các đơn
     public List<OrderModel> getAllOrders(){
         List<OrderModel> orderModels = new ArrayList<>();
 
@@ -140,6 +139,16 @@ public class OrderService {
                 OrderModel orderModel = new OrderModel(order);
                 orderModels.add(orderModel);
             }
+        }
+        return orderModels;
+    }
+
+    public List<OrderModel> getOrdersByAdmin(){
+        List<OrderModel> orderModels = new ArrayList<>();
+        List<Order> orders = orderRepository.findAll();
+
+        for (Order order : orders){
+            orderModels.add(new OrderModel(order));
         }
         return orderModels;
     }

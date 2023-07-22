@@ -51,6 +51,15 @@ public class BillService {
         return billModels;
     }
 
+    public List<BillModel> getBillByAdmin(){
+        List<BillModel> billModels = new ArrayList<>();
+        List<Bill> bills = billRepository.findAll();
+        for (Bill bill : bills){
+            billModels.add(new BillModel(bill));
+        }
+        return billModels;
+    }
+
     public List<BillModel> getBillOnGoingOfUser(){
         List<BillModel> billModels = new ArrayList<>();
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -189,7 +198,35 @@ public class BillService {
                 });
     }
 
+    // Authentication
     public BillModel getBillById(Long billId) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if(!(authentication instanceof AnonymousAuthenticationToken)) {
+            String currentUsername = authentication.getName();
+
+            User user = userRepository.getUserByUsername(currentUsername).get(0);
+
+            Optional<Bill> optionalBill = billRepository.findById(billId);
+
+            if (optionalBill.isPresent()) {
+                Bill bill = optionalBill.get();
+
+                // Check if the bill belongs to the current authenticated user before returning the BillModel
+                if (bill.getOrder().getUser().getId().equals(user.getId())) {
+                    return new BillModel(bill);
+                } else {
+                    return null;
+                }
+            } else {
+                return null;
+            }
+        } else {
+            return null;
+        }
+    }
+
+    // Get all users
+    public BillModel getBillByAdmin(Long billId){
         try{
             Bill bill = billRepository.getById(billId);
             return new BillModel(bill);
@@ -197,7 +234,6 @@ public class BillService {
             String message = "Not founded Bill with id " + billId;
             throw new CatchException(message);
         }
-
     }
 }
 

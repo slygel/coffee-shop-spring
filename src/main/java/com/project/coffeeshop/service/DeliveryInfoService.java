@@ -60,7 +60,6 @@ public class DeliveryInfoService {
         return new ArrayList<>();
     }
 
-
     public void deleteDeliveryInfoOfUser(Long id){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if(!(authentication instanceof AnonymousAuthenticationToken)){
@@ -78,7 +77,6 @@ public class DeliveryInfoService {
                 String message = "You are not authorized to delete this DeliveryInfo";
                 throw new CatchException(message);
             }
-
         }
     }
 

@@ -9,6 +9,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.File;
@@ -26,8 +27,14 @@ public class BillController {
     @GetMapping("/bills")
     public ResponseEntity<List<BillModel>> getAllBillOfUser(){
         List<BillModel> billModels = billService.getBillOfUser();
-
         return new ResponseEntity<>(billModels, HttpStatus.OK);
+    }
+
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @GetMapping("/admin/bills")
+    public ResponseEntity<List<BillModel>> getBillByAdmin(){
+        List<BillModel> billModels = billService.getBillByAdmin();
+        return new ResponseEntity<>(billModels,HttpStatus.OK);
     }
 
     @GetMapping("/bills/on-going")
@@ -46,6 +53,26 @@ public class BillController {
     @GetMapping("/bills/{billId}/generate-pdf")
     public ResponseEntity<byte[]> getBillPdf(@PathVariable("billId") Long billId) {
         BillModel billModel = billService.getBillById(billId);
+        if (billModel != null) {
+            try {
+                byte[] pdfContent = billService.generateBillPdf(billModel);
+                HttpHeaders headers = new HttpHeaders();
+                headers.setContentType(MediaType.APPLICATION_PDF);
+                headers.setContentDispositionFormData("attachment", "bill_" + billId + ".pdf");
+
+                return new ResponseEntity<>(pdfContent, headers, HttpStatus.OK);
+            } catch (IOException | DocumentException e) {
+                // Handle exceptions if necessary
+                return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+            }
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @GetMapping("/admin/bills/{billId}/generate-pdf")
+    public ResponseEntity<byte[]> getBillPdfByAdmin(@PathVariable("billId") Long billId) {
+        BillModel billModel = billService.getBillByAdmin(billId);
         if (billModel != null) {
             try {
                 byte[] pdfContent = billService.generateBillPdf(billModel);

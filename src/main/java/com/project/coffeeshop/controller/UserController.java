@@ -23,7 +23,7 @@ public class UserController {
 
     // admin
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    @GetMapping("/auth/user/info/getAll")
+    @GetMapping("/admin/user/info/getAll")
     public ResponseEntity<List<UserModel>> getAllUsers(){
         ArrayList<UserModel> userModels = new ArrayList<>(userService.getAllUsers());
         return new ResponseEntity<>(userModels, HttpStatus.OK);
@@ -31,7 +31,7 @@ public class UserController {
 
     // admin
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    @GetMapping("/auth/user/info/{id}")
+    @GetMapping("/admin/user/info/{id}")
     public ResponseEntity<?> getUserById(@PathVariable("id") Long id){
         try{
             UserModel userModel = userService.getUserById(id);
@@ -46,7 +46,7 @@ public class UserController {
 
     // admin
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    @DeleteMapping("/auth/user/delete/{id}")
+    @DeleteMapping("/admin/user/delete/{id}")
     public ResponseEntity<?> deleteUserById(@PathVariable Long id){
         try {
             userService.deleteUserById(id);
@@ -58,7 +58,7 @@ public class UserController {
         }
     }
 
-    @PutMapping("/auth/user/update/{id}")
+    @PutMapping("/user/update/{id}")
     public void update(@PathVariable("id") Long id ,
                        @RequestBody User user){
         userService.update(id,user);
