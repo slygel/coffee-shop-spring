@@ -24,11 +24,13 @@ public class BillController {
     @Autowired
     private BillService billService;
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/bills")
     public ResponseEntity<List<BillModel>> getAllBillOfUser(){
         List<BillModel> billModels = billService.getBillOfUser();
         return new ResponseEntity<>(billModels, HttpStatus.OK);
     }
+
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping("/admin/bills")
@@ -37,6 +39,7 @@ public class BillController {
         return new ResponseEntity<>(billModels,HttpStatus.OK);
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/bills/on-going")
     public ResponseEntity<List<BillModel>> getAllBillOnGoingOfUser(){
         List<BillModel> billModels = billService.getBillOnGoingOfUser();
@@ -44,12 +47,14 @@ public class BillController {
         return new ResponseEntity<>(billModels,HttpStatus.OK);
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/bills/complete")
     public ResponseEntity<List<BillModel>> getAllBillCompleteOfUser(){
         List<BillModel> billModels = billService.getBillCompleteOfUser();
         return new ResponseEntity<>(billModels,HttpStatus.OK);
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/bills/{billId}/generate-pdf")
     public ResponseEntity<byte[]> getBillPdf(@PathVariable("billId") Long billId) {
         BillModel billModel = billService.getBillById(billId);
@@ -115,4 +120,10 @@ public class BillController {
             return ResponseEntity.notFound().build();
         }
     }
+
+//    @GetMapping("/bills/amount")
+//    public ResponseEntity<?> getAmount(){
+//        List<Double> amount = billService.getAllAmounts();
+//        return new ResponseEntity<>(amount,HttpStatus.OK);
+//    }
 }

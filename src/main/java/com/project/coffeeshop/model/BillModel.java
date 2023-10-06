@@ -7,7 +7,7 @@ import lombok.Data;
 public class BillModel {
 	
 	private Long id;
-	private Double amount;
+	private long amount;
 	private OrderModel order;
 	
 	public BillModel(Bill bill) {
@@ -22,10 +22,10 @@ public class BillModel {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public Double getAmount() {
+	public long getAmount() {
 		return amount;
 	}
-	public void setAmount(Double amount) {
+	public void setAmount(long amount) {
 		this.amount = amount;
 	}
 	public OrderModel getOrder() {

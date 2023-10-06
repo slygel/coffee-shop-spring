@@ -1,7 +1,5 @@
 package com.project.coffeeshop.entity;
 
-import com.project.coffeeshop.model.OrderModel;
-import com.project.coffeeshop.model.PaymentModel;
 import lombok.Data;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;

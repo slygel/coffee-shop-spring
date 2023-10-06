@@ -27,6 +27,7 @@ public class FeedbackController {
         return new ResponseEntity<>(true,HttpStatus.OK);
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/feedbacks")
     public ResponseEntity<List<FeedbackUser>> getFeedbackOrder(){
         ArrayList<FeedbackUser> feedbackDtos = new ArrayList<>(feedbackService.getAllFeedbacks());

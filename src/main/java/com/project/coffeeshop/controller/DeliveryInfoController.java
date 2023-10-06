@@ -29,6 +29,7 @@ public class DeliveryInfoController {
         }
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/delivery-info")
     public ResponseEntity<?> getDeliveryInfoOfUser(){
         ArrayList<DeliveryInfoModel> deliveryInfoModels = new ArrayList<>(deliveryInfoService.getDeliveryInfoOfUser());

@@ -49,7 +49,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                                         "/api/v1/changePassword",
                                         "/api/v1/products",
                                         "/api/v1/categories" ,
-                                        "/api/v1/category-name/{name}").permitAll()
+                                        "/api/v1/category-name/{name}",
+                                        "/api/v1/create_payment").permitAll()
 
                 .antMatchers("/admin/**" , "/users").hasRole("ADMIN")
                 .anyRequest()

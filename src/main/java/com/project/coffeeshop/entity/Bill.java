@@ -11,7 +11,7 @@ public class Bill implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private Double amount;
+	private long amount;
 	
 	@OneToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "order_id")
@@ -37,11 +37,11 @@ public class Bill implements Serializable{
 		this.id = id;
 	}
 
-	public Double getAmount() {
+	public long getAmount() {
 		return amount;
 	}
 
-	public void setAmount(Double amount) {
+	public void setAmount(long amount) {
 		this.amount = amount;
 	}
 }

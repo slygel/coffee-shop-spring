@@ -20,6 +20,7 @@ public class VoucherController {
     @Autowired
     private VoucherService voucherService;
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/vouchers")
     public ResponseEntity<List<VoucherModel>> getAllVouchers(){
         List<VoucherModel> voucherModels = voucherService.getAllVouchers();

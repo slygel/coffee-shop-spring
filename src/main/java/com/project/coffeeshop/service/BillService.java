@@ -5,7 +5,6 @@ import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.project.coffeeshop.entity.Bill;
-import com.project.coffeeshop.entity.Item;
 import com.project.coffeeshop.entity.User;
 import com.project.coffeeshop.exception.CatchException;
 import com.project.coffeeshop.model.BillModel;
@@ -42,7 +41,6 @@ public class BillService {
             String currentUserName = authentication.getName();
             User user = userRepository.getUserByUsername(currentUserName).get(0);
             List<Bill> bills = billRepository.findByUser(user);
-
 
             for (Bill bill : bills){
                 billModels.add(new BillModel(bill));

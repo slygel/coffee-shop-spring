@@ -98,6 +98,7 @@ public class AuthController {
         return new ResponseEntity<>(responseDto,HttpStatus.CREATED);
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/user/info")
     public ResponseEntity<UserDto> getOwnUserInfo(){
         UserDto userDto = userService.getUserInfo();

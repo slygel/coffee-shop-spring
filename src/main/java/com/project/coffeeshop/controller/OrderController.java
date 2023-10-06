@@ -2,6 +2,7 @@ package com.project.coffeeshop.controller;
 
 import com.project.coffeeshop.dto.OrderDto;
 import com.project.coffeeshop.dto.ResponseDto;
+import com.project.coffeeshop.dto.TransactionDetails;
 import com.project.coffeeshop.exception.CatchException;
 import com.project.coffeeshop.exception.DeleteResponse;
 import com.project.coffeeshop.model.OrderModel;
@@ -26,6 +27,7 @@ public class OrderController {
     @Autowired
     private ShipmentService shipmentService;
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/orders")
     public ResponseEntity<List<OrderModel>> getAllOrderOfUser(){
         List<OrderModel> orderModels = orderService.getAllOrders();
@@ -66,6 +68,7 @@ public class OrderController {
         }
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/orders/{orderId}/total-amount")
     public ResponseEntity<Double> getTotalAmount(@PathVariable("orderId") Long orderId) {
         double totalAmount = orderService.getTotalAmount(orderId);
@@ -83,15 +86,23 @@ public class OrderController {
         }
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/orders/complete")
     public ResponseEntity<List<OrderModel>> getCompleteOrder(){
         List<OrderModel> orderModels = orderService.getCompleteOrder();
         return new ResponseEntity<>(orderModels,HttpStatus.OK);
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/orders/is-going")
     public ResponseEntity<List<OrderModel>> getIsGoingOrder(){
         List<OrderModel> orderModels = orderService.getIsGoingOrder();
         return new ResponseEntity<>(orderModels,HttpStatus.OK);
+    }
+
+    @GetMapping("/createTransaction/{amount}")
+    public ResponseEntity<TransactionDetails> createTransaction(@PathVariable(name = "amount") Double amount){
+        TransactionDetails transactionDetails = orderService.createTransaction(amount);
+        return new ResponseEntity<>(transactionDetails,HttpStatus.OK);
     }
 }

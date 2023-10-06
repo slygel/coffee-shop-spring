@@ -21,12 +21,14 @@ public class ProductController {
     @Autowired
     private ProductService productService;
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/products")
     public ResponseEntity<List<ProductModel>> getAllProduct(){
         ArrayList<ProductModel> productModels = new ArrayList<>(productService.getAllProducts());
         return new ResponseEntity<>(productModels, HttpStatus.OK);
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/product-id/{id}")
     public ResponseEntity<?> getProductById(@PathVariable("id") Long id){
         try{
@@ -39,6 +41,7 @@ public class ProductController {
         }
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/product-name/{name}")
     public ResponseEntity<ProductModel> getProductByName(@PathVariable("name") String name){
         ProductModel productModel = productService.getProductModelByName(name);

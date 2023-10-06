@@ -1,12 +1,15 @@
 package com.project.coffeeshop.service;
 
 import com.project.coffeeshop.dto.OrderDto;
+import com.project.coffeeshop.dto.TransactionDetails;
 import com.project.coffeeshop.entity.*;
 import com.project.coffeeshop.exception.CatchException;
 import com.project.coffeeshop.model.ItemModel;
 import com.project.coffeeshop.model.OrderModel;
 import com.project.coffeeshop.model.ProductModel;
 import com.project.coffeeshop.repo.*;
+import com.razorpay.RazorpayClient;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -47,9 +50,15 @@ public class OrderService {
     @Autowired
     private AuthService authService;
 
+    private String KEY = "rzp_test_DM9skgmLpQV9kh";
+
+    private String KEY_SECRET = "HQrsxE2azWhcB5PzpY2LAqja";
+
+    private String CURRENCY = "VND";
+
     @Transactional
     public boolean createOrder(OrderDto orderDto){
-        double amount = 0;
+        long amount = 0;
         Order order = new Order();
 
         order.setOrderDate(new Date(System.currentTimeMillis()));
@@ -234,5 +243,33 @@ public class OrderService {
             String message = "Can not delete product with id "+ id;
             throw new CatchException(message);
         }
+    }
+
+    public TransactionDetails createTransaction(Double amount){
+        try {
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.put("amount",amount);
+            jsonObject.put("currency",CURRENCY);
+
+            RazorpayClient razorpayClient = new RazorpayClient(KEY,KEY_SECRET);
+
+            com.razorpay.Order order = razorpayClient.orders.create(jsonObject);
+
+            TransactionDetails transactionDetails = prepareTransactionDetails(order);
+
+            return transactionDetails;
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+        return null;
+    }
+
+    private TransactionDetails prepareTransactionDetails(com.razorpay.Order order){
+        Long orderId = order.get("id");
+        String currency = order.get("currency");
+        Long amount = order.get("amount");
+
+        TransactionDetails transactionDetails = new TransactionDetails(orderId,currency,amount);
+        return transactionDetails;
     }
 }

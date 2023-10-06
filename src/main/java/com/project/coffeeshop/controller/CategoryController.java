@@ -25,12 +25,14 @@ public class CategoryController {
         this.categoryService = categoryService;
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/categories")
     public ResponseEntity<List<CategoryModel>> getAllCategory(){
         List<CategoryModel> categoryModels = new ArrayList<>(categoryService.getAll());
         return new ResponseEntity<>(categoryModels, HttpStatus.OK);
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/category-name/{name}")
     public ResponseEntity<CategoryModel> getByName(@PathVariable("name") String name){
         CategoryModel categoryModel = categoryService.getByName(name);
