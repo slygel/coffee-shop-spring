@@ -70,8 +70,8 @@ public class OrderController {
 
     @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/orders/{orderId}/total-amount")
-    public ResponseEntity<Double> getTotalAmount(@PathVariable("orderId") Long orderId) {
-        double totalAmount = orderService.getTotalAmount(orderId);
+    public ResponseEntity<Long> getTotalAmount(@PathVariable("orderId") Long orderId) {
+        long totalAmount = orderService.getTotalAmount(orderId);
         return new ResponseEntity<>(totalAmount, HttpStatus.OK);
     }
 

@@ -163,19 +163,19 @@ public class OrderService {
     }
 
     // Tra lai tong
-    public double getTotalAmount(Long orderId) {
+    public long getTotalAmount(Long orderId) {
         Optional<Order> optionalOrder = orderRepository.findById(orderId);
         if (optionalOrder.isPresent()) {
             Order order = optionalOrder.get();
             List<Item> items = order.getItems();
-            double totalAmount = 0;
+            long totalAmount = 0;
             for (Item item : items) {
                 totalAmount += item.getPriceIn() * item.getQuantity();
             }
             return totalAmount;
         }
         // Xử lý khi không tìm thấy đơn hàng
-        return 0.0;
+        return 0;
     }
 
     // Lấy ra đơn đã giao
