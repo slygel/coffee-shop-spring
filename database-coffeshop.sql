@@ -153,7 +153,7 @@ INSERT INTO Product Values(16,'https://product.hstatic.net/1000075078/product/16
 INSERT INTO Delivery_info Values(1,'Ba Vì, Hà Nội','true','Giao hàng vào 7h sáng','0383291503','Tài Tuệ', 1);
 
 INSERT INTO Payment Values (1 , 'Nhận hàng trước khi thanh toán');
-INSERT INTO Payment Values (2 , 'Thanh toán qua viettel pay');
+INSERT INTO Payment Values (2 , 'Thanh toán qua VNPAY pay');
 
 INSERT INTO `order` Values(1,'2023-07-14',1,1,null);
 
