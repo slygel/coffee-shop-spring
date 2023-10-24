@@ -1,5 +1,8 @@
 # REST API for Coffeehome Website
 
+## Introduction
+  RESTful API for managing coffeehome functions such as managing orders, users.... The project uses Spring framework.
+  
 ## Database
 *Diagram*
 <img src="images/diagram.png">
