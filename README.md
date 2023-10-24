@@ -1,9 +1,10 @@
 # REST API for Coffeehome Website
 
 ## Database
+*Diagram*
+<img src="images/diagram.png">
 
 ## Features
-
 ### 1. View Products
 <img src="images/Get_Products.jpg">
 
@@ -43,9 +44,23 @@
 <img src="images/Order completed.jpg">
 
 ### 10. Manage user information
-CRUD user by admin
+  CRUD user by admin
+
 <img src="images/Infor_User.jpg">
 
 ## Getting Started
 
 ### Requirements
+- Spring boot: 2.5.3
+- Java SDK: 11
+- Maven 
+- MySQL 8.0
+- Postman
+### Install
+- Install Java
+    https://www.oracle.com/java/technologies/javase/jdk11-archive-downloads.html
+- Install Spring boot project
+    https://start.spring.io/
+- Install IntelliJ IDEA
+    https://www.jetbrains.com/idea/download/?section=windows
+
