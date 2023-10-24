@@ -1,7 +1,7 @@
 # REST API for Coffeehome Website
 
 ## Introduction
-  RESTful API for managing coffeehome functions such as managing orders, users.... The project uses Spring framework.
+  RESTful API for managing coffeehome functions such as managing orders, users and online payment.... The project uses Spring framework.
   
 ## Database
 *Diagram*
