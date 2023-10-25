@@ -66,4 +66,8 @@
     https://start.spring.io/
 - Install IntelliJ IDEA
     https://www.jetbrains.com/idea/download/?section=windows
+- Install MySQL
+    https://dev.mysql.com/downloads/
+- Install Postman
+    https://www.postman.com/downloads/
 
