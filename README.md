@@ -31,16 +31,16 @@
 
 ### 8. Online Payment
 
-*Return URL*
+ *Return URL*
 <img src="images/URL Payment.jpg">
 
-*Enter card information*
+- *Enter card information*
 <img src="images/Payment_1.jpg">
 
-*Vertify OTP*
+- *Vertify OTP*
 <img src="images/Payment_2.jpg">
 
-*Transaction management*
+- *Transaction management*
 <img src="images/Manage_payment.jpg">
 
 ### 9. Confirmation of delivered order by shipper
