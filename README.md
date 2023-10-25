@@ -31,7 +31,7 @@
 
 ### 8. Online Payment
 
- *Return URL*
+- *Return URL*
 <img src="images/URL Payment.jpg">
 
 - *Enter card information*
